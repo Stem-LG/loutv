@@ -1,6 +1,8 @@
 import type { Item, Category, LoginCredentials, AccountInfo } from '../../types/iptv';
 import { M3uParser, M3uPlaylist } from 'm3u-parser-generator';
 import Database from '@tauri-apps/plugin-sql';
+import { fetch } from "@tauri-apps/plugin-http";
+
 
 export type AuthenticationStatus = {
     success: boolean;
@@ -113,7 +115,7 @@ export async function authenticate(
         }
 
         await saveAccount(credentials);
-        
+
         return refreshData(credentials, onProgress);
 
     } catch (error) {

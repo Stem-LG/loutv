@@ -25,7 +25,7 @@ export default function LoginPage() {
     const [status, setStatus] = useState<AuthenticationStatus>({
         success: false,
         loading: false,
-        message: ""
+        message: "",
     });
     const [progress, setProgress] = useState(0);
 
@@ -45,14 +45,14 @@ export default function LoginPage() {
         setStatus({
             success: false,
             loading: true,
-            message: "Starting authentication..."
+            message: "Starting authentication...",
         });
 
         try {
             const finalStatus = await authenticate(values, (status) => {
                 setStatus(status);
                 // Extract progress percentage from the message if it contains one
-                if (status.message.includes('%')) {
+                if (status.message.includes("%")) {
                     const match = status.message.match(/(\d+)%/);
                     if (match) {
                         setProgress(parseInt(match[1]));
@@ -70,7 +70,7 @@ export default function LoginPage() {
             setError(err instanceof Error ? err.message : "Failed to connect to server");
         } finally {
             setIsLoading(false);
-            setStatus(prev => ({ ...prev, loading: false }));
+            setStatus((prev) => ({ ...prev, loading: false }));
         }
     };
 
@@ -129,9 +129,7 @@ export default function LoginPage() {
                             {status.loading && (
                                 <div className="space-y-2">
                                     <Progress value={progress} className="w-full h-2" />
-                                    <p className="text-sm text-muted-foreground text-center">
-                                        {status.message}
-                                    </p>
+                                    <p className="text-sm text-muted-foreground text-center">{status.message}</p>
                                 </div>
                             )}
                             {error && <div className="text-sm text-destructive text-center">{error}</div>}

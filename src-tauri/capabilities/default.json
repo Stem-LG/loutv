@@ -16,6 +16,17 @@
                     "path": "$APPCONFIG/testing.m3u"
                 }
             ]
+        },
+        {
+            "identifier": "http:default",
+            "allow": [
+                {
+                    "url": "http://**"
+                },
+                {
+                    "url": "https://**"
+                }
+            ]
         }
     ]
 }
